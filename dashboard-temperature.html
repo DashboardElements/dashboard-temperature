@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../dashboard-layout/dashboard-layout.html">
 
 <!--
-An element providing a solution to no problem in particular.
+An element to display temperature.
 
 Example:
 
@@ -77,18 +77,14 @@ Example:
       is: 'dashboard-temperature',
 
       properties: {
-        /**
-         * The temperature measurement
-         */
+        /** The temperature measurement */
         temperature: {
           type: Number,
           value: '--',
           notify: true
         },
 
-        /**
-         * The temperature units (F or C)
-         */
+        /** The temperature units (F or C) */
         units: {
           value: 'F',
           type: String,
@@ -98,6 +94,7 @@ Example:
 
       /**
        * Converts the temperature to the proper unit value
+       *
        * @param temp  {number}
        * @param units {(F|C)}
        * @returns {string}
@@ -109,16 +106,20 @@ Example:
 
       /**
        * Converts fahrenheit to celsius
+       *
+       * @param degF {number} The value of the temperature in degrees Fahrenheit
+       * @returns {string|number}
        */
       _toCelsius: function(degF) {
         return isNaN(degF) ? '--' : this._roundPlaces((degF - 32) / 1.8, 1);
       },
 
       /**
-       * rounds
-       * @param number {number}
-       * @param places {number}
-       * @returns {number}
+       * Rounds a number to a set number of places
+       *
+       * @param number {number} The number to round
+       * @param places {number} The number of places to round to
+       * @returns {number} The rounded number
        * @private
        */
       _roundPlaces: function(number, places) {
